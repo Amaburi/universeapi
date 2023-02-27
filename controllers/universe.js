@@ -39,7 +39,7 @@ module.exports = {
                 where: {id}
             });
             res.json({
-                message: "Quizzes Updated Successfully!!!",
+                message: `Quizzes updated Successfully!!! with id: ${id}`,
                 data: quiz,
             });
         }catch(err){
@@ -68,7 +68,6 @@ module.exports = {
         const id = req.params.id
         try{
             const quiz = await Quiz.findByPk(id, {rejectOnEmpty: true})
-            quiz.destroy()
             res.json({
                 message: `Quizzes Retrieved Successfully!!! with id: ${id}`,
                 data: quiz,

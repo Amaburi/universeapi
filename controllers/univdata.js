@@ -1,10 +1,10 @@
 const db = require('../models');
-const Quiz = db.univdata;
+const universe = db.univdata;
 
 module.exports = {
     create : async (req, res) => {
         try{
-            const data = await Quiz.create(req.body)
+            const data = await universe.create(req.body)
             res.json({
                 message: "Planet created successfully!!",
                 data: data,
@@ -18,7 +18,7 @@ module.exports = {
     },
     getAll : async(req, res) => {
         try{
-            const quizzes = await Quiz.findAll()
+            const quizzes = await universe.findAll()
             res.json({
                 message: "Planet Retrived Successfully!!!",
                 data: quizzes,
@@ -33,7 +33,7 @@ module.exports = {
     update: async(req, res) => {
         const id = req.params.id
         try{
-            const quiz = await Quiz.findByPk(id, {rejectOnEmpty: true})
+            const quiz = await universe.findByPk(id, {rejectOnEmpty: true})
             quiz.update(req.body, {
     
                 where: {id}
@@ -52,7 +52,7 @@ module.exports = {
     delete : async(req, res) => {
         const id = req.params.id
         try{
-            const quiz = await Quiz.findByPk(id, {rejectOnEmpty: true})
+            const quiz = await universe.findByPk(id, {rejectOnEmpty: true})
             quiz.destroy()
             res.json({
                 message: "Planet Deleted Successfully!!!",
@@ -67,8 +67,7 @@ module.exports = {
     findOne : async(req, res) => {
         const id = req.params.id
         try{
-            const quiz = await Quiz.findByPk(id, {rejectOnEmpty: true})
-            quiz.destroy()
+            const quiz = await universe.findByPk(id, {rejectOnEmpty: true})
             res.json({
                 message: `Planet Retrieved Successfully!!! with id: ${id}`,
                 data: quiz,
@@ -83,7 +82,7 @@ module.exports = {
     getByCategoryId  : async(req, res) => {
         const id = req.params.id
         try{
-            const quizzes = await Quiz.findAll({
+            const quizzes = await universe.findAll({
                 where:{
                     categoryId: id
                 }
@@ -103,7 +102,7 @@ module.exports = {
     getByLevelId  : async(req, res) => {
         const id = req.params.id
         try{
-            const quizzes = await Quiz.findAll({
+            const quizzes = await universe.findAll({
                 where:{
                     LevelId: id
                 }
